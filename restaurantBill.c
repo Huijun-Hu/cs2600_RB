@@ -13,19 +13,19 @@ Restaurant Bill
 int main(){
 
 	/* variables declaration */
-	float taxP = -1, tipP = -1;
+	int taxP = -1, tipP = -1;
 	int mealNum;
 	time_t t;
-	float tax, tip, total;
+	double tax, tip, total;
 
 	/* input for taxP and tipP and check for negativity*/
 	do{
-		printf("Please enter tax (percentage): ");
-		scanf("%f", &taxP);
+		printf("Please enter tax (%%): ");
+		scanf("%d", &taxP);
 	} while (taxP < 0);
 	do{
-		printf("Please enter tip (percentage): ");
-		scanf("%f", &tipP);
+		printf("Please enter tip (%%): ");
+		scanf("%d", &tipP);
 	} while (tipP < 0);
 	
    
@@ -36,16 +36,16 @@ int main(){
 	mealNum = rand() % 4;
 
 	char mealName[4][20] = {"Salad", "Soup", "Sandwich", "Pizza"};
-	float mealPrice[] = {9.95, 4.55, 13.25, 22.35};
+	double mealPrice[] = {9.95, 4.55, 13.25, 22.35};
 
 	/* calculation */
-	tax = mealPrice[mealNum] * taxP;
-	tip = mealPrice[mealNum] * tipP;
+	tax = mealPrice[mealNum] * (taxP/100.00);
+	tip = mealPrice[mealNum] * (tipP/100.00);
 	total = mealPrice[mealNum] + tax + tip;
 
 	/* output */
-	printf("\nYour selected meal is %s and it costs $%f.", mealName[mealNum], mealPrice[mealNum]);
-	printf("\nTax amount: $%f\nTip amount: $%f\nTotal bill: $%f\n\n", tax, tip, total);
+	printf("\nYour selected meal is %s and it costs $%.2f.", mealName[mealNum], mealPrice[mealNum]);
+	printf("\nTax amount: $%.4f\nTip amount: $%.4f\nTotal bill: $%.4f\n\n", tax, tip, total);
 
 	return 0;
  } /* end main */
